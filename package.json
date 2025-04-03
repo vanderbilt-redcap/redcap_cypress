@@ -6,11 +6,11 @@
     "cypress": "^13.17.0",
     "del-cli": "^5.1.0",
     "move-cli": "^2.0.0",
-    "rctf": "git://github.com/aldefouw/rctf#v1.0.117",
-    "redcap_rsvc": "git://github.com/4bbakers/redcap_rsvc#V15.0.9-ABC"
+    "rctf": "git://github.com/vanderbilt-redcap/rctf#main",
+    "redcap_rsvc": "git://github.com/vanderbilt-redcap/redcap_rsvc#staging"
   },
   "optionalDependencies": {
-    "redcap_cypress_doc_theme": "git://github.com/aldefouw/redcap_cypress_doc_theme#bf84bfa"
+    "redcap_cypress_doc_theme": "git://github.com/vanderbilt-redcap/redcap_cypress_doc_theme#bf84bfa"
   },
   "peerDependencies": {
     "cypress": "^13.13.0"
@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aldefouw/redcap_cypress.git"
+    "url": "https://github.com/vanderbilt-redcap/redcap_cypress.git"
   },
   "author": "Adam De Fouw",
   "license": "MIT",

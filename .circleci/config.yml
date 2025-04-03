@@ -34,14 +34,14 @@ commands:
           name: Build the REDCap Image
           command: |
             cd << parameters.dir >>
-            git clone --branch xdebug https://github.com/aldefouw/redcap_docker
+            git clone --branch xdebug https://github.com/vanderbilt-redcap/redcap_docker
       - run:
           name: Get REDCap Source
           command: |
             cd << parameters.dir >>
             mkdir redcap_source
             cd redcap_source
-            GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_042ee976ef53cbd6ec78fbf9742292ca" git clone --depth=1 git@github.com:vanderbilt-redcap/REDCap.git redcap_v${REDCAP_VERSION}
+            git clone --depth=1 git@github.com:vanderbilt-redcap/REDCap.git redcap_v${REDCAP_VERSION}
             cp -a redcap_v${REDCAP_VERSION}/Resources/install_files/redcap/* .
             cp -a redcap_v${REDCAP_VERSION}/Resources/nonversioned_files/* .
             cp ../.circleci/redcap_install_files/* .
@@ -150,12 +150,12 @@ jobs:
           name: Push to Repository
           command: |
             cd /home/circleci/project
-            GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa" git clone --branch redcap-cypress --depth=1 https://github.com/aldefouw/redcap_source redcap_cypress_build_reports
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_dba1897a8caca68e1a8a5c2185311de3" git clone --depth=1 git@github.com:vanderbilt-redcap/redcap_cypress_build_reports.git
             cd redcap_cypress_build_reports
             sudo zip -r "html-report-${REDCAP_VERSION}.zip" ../coverage-report/html-report/*
             git add "html-report-${REDCAP_VERSION}.zip"
             git commit -m "Add latest HTML Report for version ${REDCAP_VERSION}"
-            GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa" git push origin redcap-cypress
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_dba1897a8caca68e1a8a5c2185311de3" git push
 
       - store_artifacts:
           path: /home/circleci/project/coverage/cypress/videos
