@@ -6,7 +6,7 @@
     "cypress": "^13.17.0",
     "del-cli": "^5.1.0",
     "move-cli": "^2.0.0",
-    "rctf": "git://github.com/vanderbilt-redcap/rctf#main",
+    "rctf": "git://github.com/vanderbilt-redcap/rctf#f53319a603b07c1789dbac8672a04dddeab950bd",
     "redcap_rsvc": "git://github.com/vanderbilt-redcap/redcap_rsvc#staging"
   },
   "optionalDependencies": {
