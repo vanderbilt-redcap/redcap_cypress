@@ -13,7 +13,7 @@ module.exports = defineConfig({
         baseUrl: 'http://localhost:8080',
         stepDefinitions: 'cypress/support/step_definitions',
         specPattern: [ 'cypress/features/*.feature',
-                       'redcap_rsvc/*/[ABC]/*/B.6.13.0100*.feature',
+                       'redcap_rsvc/*/[ABC]/*/C.3.24.0305.*.feature',
                        '!redcap_rsvc/*/[ABC]/*/*REDUNDANT*.feature'
                      ],
         testIsolation: false,
