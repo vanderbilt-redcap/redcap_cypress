@@ -50,6 +50,6 @@
   "author": "Adam De Fouw",
   "license": "MIT",
   "dependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^20.1.0"
+    "@badeball/cypress-cucumber-preprocessor": "^22"
   }
 }
