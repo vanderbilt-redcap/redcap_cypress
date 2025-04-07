@@ -15,12 +15,12 @@ authors:
 identifiers:
   - type: url
     value: >-
-      https://github.com/aldefouw/redcap_cypress/tree/v13.1.37_rapid
+      https://github.com/vanderbilt-redcap/redcap_cypress/tree/master
     description: >-
       The URL of REDCap Cypress Test Framework to use
       against v13.1.37 LTS of REDCap.
 repository-code: >-
-  https://github.com/aldefouw/redcap_cypress/tree/v13.1.37_rapid
+  https://github.com/vanderbilt-redcap/redcap_cypress/tree/master
 keywords:
   - REDCap
   - Cypress
