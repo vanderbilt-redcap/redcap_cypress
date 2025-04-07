@@ -6,8 +6,8 @@
     "cypress": "^13.17.0",
     "del-cli": "^5.1.0",
     "move-cli": "^2.0.0",
-    "rctf": "git://github.com/vanderbilt-redcap/rctf#main",
-    "redcap_rsvc": "git://github.com/vanderbilt-redcap/redcap_rsvc#staging"
+    "rctf": "git://github.com/vanderbilt-redcap/rctf#outstanding-pull-requests",
+    "redcap_rsvc": "git://github.com/vanderbilt-redcap/redcap_rsvc#outstanding-pull-requests"
   },
   "optionalDependencies": {
     "redcap_cypress_doc_theme": "git://github.com/vanderbilt-redcap/redcap_cypress_doc_theme#bf84bfa"
