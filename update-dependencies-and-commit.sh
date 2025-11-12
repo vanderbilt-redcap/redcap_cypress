@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
-
-if [ -n "$(git status --porcelain)" ]; then 
-  echo The redcap_cypress directory is not clean
+diffOutput=`git diff --cached --exit-code`
+if [ $? -ne 0 ]; then
+  echo The redcap_cypress must not have any staged changes for this script to function properly.
   exit
 fi
+
+set -e
 
 rsvcBranch=`git -C redcap_rsvc rev-parse --abbrev-ref HEAD`
 if [ $rsvcBranch != 'marks-changes' ]; then
