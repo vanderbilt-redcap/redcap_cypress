@@ -24,8 +24,7 @@ fi
 rsvcCommit=`git -C redcap_rsvc rev-parse HEAD`
 rctfCommit=`git -C $rctfPath rev-parse HEAD`
 
-npm install github:vanderbilt-redcap/redcap_rsvc#$rsvcCommit
-npm install github:vanderbilt-redcap/rctf#$rctfCommit
+npm install github:vanderbilt-redcap/redcap_rsvc#$rsvcCommit github:vanderbilt-redcap/rctf#$rctfCommit
 npm link $rctfPath
 
 git add package.json package-lock.json
