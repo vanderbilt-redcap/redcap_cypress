@@ -29,3 +29,4 @@ npm link $rctfPath
 
 git add package.json package-lock.json
 git commit -m "rsvc to $rsvcCommit and rctf to $rctfCommit"
+git push
