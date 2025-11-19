@@ -21,8 +21,8 @@ if [ $rctfBranch != 'marks-changes' ]; then
     exit
 fi
 
-rsvcCommit=`git -C redcap_rsvc rev-parse HEAD`
-rctfCommit=`git -C $rctfPath rev-parse HEAD`
+rsvcCommit=`git -C redcap_rsvc rev-parse --short HEAD`
+rctfCommit=`git -C $rctfPath rev-parse --short HEAD`
 
 npm install github:vanderbilt-redcap/redcap_rsvc#$rsvcCommit github:vanderbilt-redcap/rctf#$rctfCommit
 npm link $rctfPath
