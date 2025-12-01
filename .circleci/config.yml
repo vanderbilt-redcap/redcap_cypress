@@ -9,7 +9,7 @@ executors:
       image: ubuntu-2404:2024.11.1 # Machine image updates: https://circleci.com/developer/machine/image/ubuntu-2404
       resource_class: large
     environment:
-      REDCAP_VERSION: "15.9.2"
+      REDCAP_VERSION: "15.9.3"
 
 workflows:
   version: 2
