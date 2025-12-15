@@ -244,3 +244,6 @@ https://github.com/vanderbilt-redcap/redcap_rsvc
 All REDCap feature tests run through this repository are powered by Step Definitions defined in the [RCTF](https://github.com/vanderbilt-redcap/rctf) node package.   
 
 Hundreds of steps are available, and we built a [Gherkin Step Builder](https://vanderbilt-redcap.github.io/rctf/) tool to help you generate your own syntactically valid Steps in your Feature Tests.
+
+# Further Reading
+[The Wiki](https://github.com/vanderbilt-redcap/redcap_cypress/wiki) contains more details on all of the above, but may be outdated.  Long term we may want to move the content of that wiki here so that find/replace will catch documentation changes as updates are made over time.
