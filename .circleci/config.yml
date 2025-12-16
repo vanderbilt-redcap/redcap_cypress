@@ -130,6 +130,8 @@ jobs:
           command: |
             if git log -1 --pretty=%B | grep -q '\[video-upload\]'; then
               echo "Attempting video upload to REDCap project ..."
+              cd /home/circleci/project
+              npm install # Required to detect "Testing Platform" in import_video.sh
               cd /home/circleci/project/coverage/redcap_rsvc
               node upload_videos_to_redcap_project.js $REDCAP_API_TOKEN $PROJECT_ID $REDCAP_API_URL
             else
