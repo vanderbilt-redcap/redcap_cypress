@@ -8,8 +8,6 @@ executors:
     machine:
       image: ubuntu-2404:2024.11.1 # Machine image updates: https://circleci.com/developer/machine/image/ubuntu-2404
       resource_class: large
-    environment:
-      REDCAP_VERSION: "16.0.4"
 
 workflows:
   version: 2
@@ -30,6 +28,11 @@ commands:
         default: "."
     steps:
       - add_ssh_keys
+      - run:
+          name: Set REDCAP_VERSION
+          command: |
+            REDCAP_VERSION=`cat cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+            echo "export REDCAP_VERSION=$REDCAP_VERSION" >> $BASH_ENV
       - run:
           name: Build the REDCap Image
           command: |
