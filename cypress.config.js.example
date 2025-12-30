@@ -8,6 +8,7 @@ module.exports = defineConfig({
         // You may want to clean this up later by importing these.
         async setupNodeEvents(on, config) {
             require('rctf/plugins/index.js')(on, config)
+            on('after:run', () => {}) // override to prevent crash on "cypress run"
             return config
         },
         baseUrl: 'http://localhost:8080',
