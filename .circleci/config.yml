@@ -88,7 +88,6 @@ jobs:
             cd /home/circleci/project
             sed s/PID/$PROJECT_ID/g cypress.config.js.example > cypress.config.js
             mv cypress.env.json.example cypress.env.json
-            sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${REDCAP_VERSION}'",' cypress.env.json
       - run:
           name: Install Cypress
           command: |
