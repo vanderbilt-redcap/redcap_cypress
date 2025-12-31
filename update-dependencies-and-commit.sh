@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-diffOutput=`git diff --cached --exit-code`
-if [ $? -ne 0 ]; then
-  echo The redcap_cypress must not have any staged changes for this script to function properly.
+if [[ -n "$(git status -s)" ]]; then
+  echo The redcap_cypress repo must not have any uncommitted changes for this script to function properly.
   exit
 fi
 
