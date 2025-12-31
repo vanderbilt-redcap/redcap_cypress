@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  REDCAP_VERSION:
+    type: string
+    default: ""
+
 orbs:
   codecov: codecov/codecov@4.0.1
 
@@ -31,7 +36,11 @@ commands:
       - run:
           name: Set REDCAP_VERSION
           command: |
-            REDCAP_VERSION=`cat cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+            REDCAP_VERSION=<< pipeline.parameters.REDCAP_VERSION >>
+            if [ -z "$REDCAP_VERSION" ]; then
+              REDCAP_VERSION=`cat cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+            fi
+            echo Setting REDCAP_VERSION to $REDCAP_VERSION
             echo "export REDCAP_VERSION=$REDCAP_VERSION" >> $BASH_ENV
       - run:
           name: Build the REDCap Image
@@ -87,6 +96,8 @@ jobs:
           command: |
             cd /home/circleci/project
             sed s/PID/$PROJECT_ID/g cypress.config.js.example > cypress.config.js
+            # Favor the REDCAP_VERSION CircleCI parameter over cypress.config.js.example
+            awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'asdf$REDCAP_VERSION'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
             mv cypress.env.json.example cypress.env.json
       - run:
           name: Install Cypress
