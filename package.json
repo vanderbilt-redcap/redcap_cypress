@@ -2,11 +2,11 @@
   "name": "redcap_cypress",
   "description": "This repository is a template to assist you in writing **automated tests for REDCap**.",
   "dependencies": {
-    "rctf": "github:vanderbilt-redcap/rctf#05d11ad",
-    "redcap_rsvc": "github:vanderbilt-redcap/redcap_rsvc#b847947"
+    "rctf": "github:vanderbilt-redcap/rctf#5cc107f",
+    "redcap_rsvc": "github:vanderbilt-redcap/redcap_rsvc#57c55590"
   },
   "peerDependencies": {
-    "cypress": "*"
+    "cypress": "^15"
   },
   "devDependencies": {
     "del-cli": "^6",
@@ -21,7 +21,7 @@
     "redcap_rsvc:install": "npm run clean && npm run redcap_rsvc:move_files",
     "redcap_rsvc:move_files": "del-cli cypress/fixtures/cdisc_files && del-cli cypress/fixtures/dictionaries && del-cli cypress/fixtures/import_files && move-cli node_modules/redcap_rsvc redcap_rsvc && cp -a redcap_rsvc/Files/* cypress/fixtures/",
     "redcap_rsvc:validate_features": "npm install gherkin-parse glob-fs --no-save --silent --ignore-scripts && node validate_feature_files.js && sh validate_feature_files.sh",
-    "redcap_rsvc:single_test": "CYPRESS_prettyEnabled=true npx cypress run --spec redcap_rsvc/Feature\\ Tests/A/Configuration\\ Check_1/A.1.1.0100.\\ -\\ Run\\ Configuration\\ Check.feature --browser chrome",
+    "redcap_rsvc:single_test": "CYPRESS_prettyEnabled=true npx cypress run --spec 'redcap_rsvc/Feature Tests/A/Configuration Check_1/A.1.1.0100. - Run Configuration Check.feature' --browser chrome",
     "redcap_rsvc:all_tests": "CYPRESS_prettyEnabled=true npx cypress run --record --key $RECORD_KEY --parallel --group core-tests --browser chrome",
     "redcap_rsvc:run_official_tests": "npm run redcap_rsvc:all_tests || true",
     "rctf:install_server": "npm install http-server --no-save --silent",

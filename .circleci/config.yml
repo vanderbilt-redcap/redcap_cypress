@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  REDCAP_VERSION:
+    type: string
+    default: ""
+
 orbs:
   codecov: codecov/codecov@4.0.1
 
@@ -8,8 +13,6 @@ executors:
     machine:
       image: ubuntu-2404:2024.11.1 # Machine image updates: https://circleci.com/developer/machine/image/ubuntu-2404
       resource_class: large
-    environment:
-      REDCAP_VERSION: "16.0.1"
 
 workflows:
   version: 2
@@ -30,6 +33,15 @@ commands:
         default: "."
     steps:
       - add_ssh_keys
+      - run:
+          name: Set REDCAP_VERSION
+          command: |
+            REDCAP_VERSION=<< pipeline.parameters.REDCAP_VERSION >>
+            if [ -z "$REDCAP_VERSION" ]; then
+              REDCAP_VERSION=`cat cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+            fi
+            echo Setting REDCAP_VERSION to $REDCAP_VERSION
+            echo "export REDCAP_VERSION=$REDCAP_VERSION" >> $BASH_ENV
       - run:
           name: Build the REDCap Image
           command: |
@@ -85,7 +97,8 @@ jobs:
             cd /home/circleci/project
             sed s/PID/$PROJECT_ID/g cypress.config.js.example > cypress.config.js
             mv cypress.env.json.example cypress.env.json
-            sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${REDCAP_VERSION}'",' cypress.env.json
+            # Favor the REDCAP_VERSION CircleCI parameter over cypress.config.js.example
+            awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$REDCAP_VERSION'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
       - run:
           name: Install Cypress
           command: |
@@ -130,6 +143,8 @@ jobs:
           command: |
             if git log -1 --pretty=%B | grep -q '\[video-upload\]'; then
               echo "Attempting video upload to REDCap project ..."
+              cd /home/circleci/project
+              npm install # Required to detect "Testing Platform" in import_video.sh
               cd /home/circleci/project/coverage/redcap_rsvc
               node upload_videos_to_redcap_project.js $REDCAP_API_TOKEN $PROJECT_ID $REDCAP_API_URL
             else
