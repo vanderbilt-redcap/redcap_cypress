@@ -56,7 +56,7 @@ commands:
             cd << parameters.dir >>/..
             mkdir redcap_source
             cd redcap_source
-            if [[ "$REDCAP_VERSION" = "99.99.99" ]]; then
+            if [[ ${CIRCLE_BRANCH} == "dev" || "$REDCAP_VERSION" = "99.99.99" ]]; then
               export BRANCH=master
             else
               export BRANCH=$REDCAP_VERSION
