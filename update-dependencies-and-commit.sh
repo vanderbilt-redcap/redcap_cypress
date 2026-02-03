@@ -7,6 +7,12 @@ fi
 
 set -e
 
+rsvcBranch=`git rev-parse --abbrev-ref HEAD`
+if [ $rsvcBranch != 'dev' ]; then
+    echo Unexpected branch for redcap_cypress 
+    exit
+fi
+
 rsvcBranch=`git -C redcap_rsvc rev-parse --abbrev-ref HEAD`
 if [ $rsvcBranch != 'marks-changes' ]; then
     echo Unexpected branch for rsvc 
