@@ -36,7 +36,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "cypress-cucumber-preprocessor": {
-    "step_definitions": "cypress/support/step_definitions/"
+    "stepDefinitions": [
+      "cypress/support/step_definitions/*",
+      "../redcap_source/modules/**/automated-tests/step_definitions/*.js"
+    ]
   },
   "repository": {
     "type": "git",
