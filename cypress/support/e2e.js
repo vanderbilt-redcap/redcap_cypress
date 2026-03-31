@@ -47,4 +47,5 @@
 // })
 // ==== END: BEFORE EACH SCENARIO BLOCK ===== //
 
+import 'cypress-axe'
 require('./commands')

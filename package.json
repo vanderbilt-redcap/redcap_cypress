@@ -9,6 +9,7 @@
     "cypress": "^15"
   },
   "devDependencies": {
+    "cypress-axe": "^1.7.0",
     "del-cli": "^6",
     "move-cli": "^2"
   },
