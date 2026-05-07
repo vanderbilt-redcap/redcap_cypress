@@ -78,6 +78,9 @@ commands:
             cp -a redcap_v${REDCAP_VERSION}/Resources/nonversioned_files/* .
             cp /home/circleci/project/.circleci/redcap_install_files/* .
 
+            echo Copy examples modules in so the Module Development Examples module tests run
+            cp -a redcap_v${REDCAP_VERSION}/ExternalModules/docs/example_modules/* modules/
+
 jobs:
   run-tests:
     executor: shared-executor
