@@ -49,7 +49,18 @@ commands:
             git clone --branch main https://github.com/vanderbilt-redcap/redcap_docker ../redcap_docker
             cd ../redcap_docker
             git log -1 # Include current commit in build logs
-            git apply docker-compose.xdebug-volume-patch
+            awk '
+                { print }
+                /TEMPLATE_PHP_INI: production/ {
+                    print "      PHP_EXTENSION_XDEBUG: 1"
+                    print "      REDCAP_VERSION: ${REDCAP_VERSION:-} # currently only needed for xdebug in cloud builds"
+                }
+                /# - ..\/redcap_source\/:\/var\/www\/html/ {
+                    print "      - ../redcap_source/:/var/www/html/:Z"
+                    print "      - ../project/coverage-report/:/tmp/path/coverage-report:Z"
+                    print "      - ../project/coverage/:/tmp/path/coverage:Z"
+                }
+            ' "docker-compose.yml" > "awk.tmp" && mv "awk.tmp" "docker-compose.yml"
       - run:
           name: Get REDCap Source
           command: |
