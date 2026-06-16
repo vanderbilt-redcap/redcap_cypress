@@ -78,8 +78,16 @@ commands:
             cp -a redcap_v${REDCAP_VERSION}/Resources/nonversioned_files/* .
             cp /home/circleci/project/.circleci/redcap_install_files/* .
 
+            if [[ ${CIRCLE_BRANCH} == "dev" || "$REDCAP_VERSION" = "99.99.99" ]]; then
+              echo Checking out the "testing" branch of the EM Framework...
+              export EM_FRAMEWORK_PATH=external_modules
+              git clone --depth=1 git@github.com:vanderbilt-redcap/external-module-framework.git $EM_FRAMEWORK_PATH
+            else
+              export EM_FRAMEWORK_PATH=redcap_v${REDCAP_VERSION}/ExternalModules
+            fi
+
             echo Copy examples modules in so the Module Development Examples module tests run
-            cp -a redcap_v${REDCAP_VERSION}/ExternalModules/docs/example_modules/* modules/
+            cp -a $EM_FRAMEWORK_PATH/docs/example_modules/* modules/
 
 jobs:
   run-tests:
