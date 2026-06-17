@@ -6,6 +6,7 @@ if [[ -n "$(git status -s)" ]]; then
 fi
 
 set -e
+set -x
 
 rsvcBranch=`git -C redcap_rsvc rev-parse --abbrev-ref HEAD`
 if [ $rsvcBranch != 'marks-changes' ]; then
