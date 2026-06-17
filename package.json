@@ -15,7 +15,7 @@
   },
   "overrides": {
     "glob": "9.3.5",
-    "esbuild": "0.27.7"
+    "esbuild": "0.28.1"
   },
   "scripts": {
     "about-these-scripts": "These scripts are intended for a cloud environment, and do not currently make sense for local development where redcap_rsvc is a git checkout rather than a copy from node_modules.",
