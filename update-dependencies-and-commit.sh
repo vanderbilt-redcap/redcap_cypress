@@ -23,6 +23,9 @@ fi
 rsvcCommit=`git -C redcap_rsvc rev-parse --short HEAD`
 rctfCommit=`git -C $rctfPath rev-parse --short HEAD`
 
+git fetch
+git merge origin/master
+
 npm install github:vanderbilt-redcap/redcap_rsvc#$rsvcCommit github:vanderbilt-redcap/rctf#$rctfCommit
 npm link $rctfPath
 
