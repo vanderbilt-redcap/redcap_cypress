@@ -21,6 +21,22 @@ if [ $rctfBranch != 'marks-changes' ]; then
     exit
 fi
 
+git -C redcap_rsvc fetch
+commitsBehindStaging=`git -C redcap_rsvc log --oneline ..origin/staging | wc -l`
+if [ $commitsBehindStaging != 0 ]; then
+    # Make sure marks-changes includes any other PRs merged straight to staging
+    git -C redcap_rsvc  merge origin/staging
+    git -C redcap_rsvc push
+fi
+
+git -C $rctfPath fetch
+commitsBehindMain=`git -C $rctfPath log --oneline ..origin/main | wc -l`
+if [ $commitsBehindMain != 0 ]; then
+    # Make sure marks-changes includes any other PRs merged straight to main
+    git -C $rctfPath merge origin/main
+    git -C $rctfPath push
+fi
+
 rsvcCommit=`git -C redcap_rsvc rev-parse --short HEAD`
 rctfCommit=`git -C $rctfPath rev-parse --short HEAD`
 
