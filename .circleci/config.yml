@@ -4,6 +4,9 @@ parameters:
   REDCAP_VERSION:
     type: string
     default: ""
+  UPLOAD_RESULTS:
+    type: boolean
+    default: false
 
 orbs:
   codecov: codecov/codecov@4.0.1
@@ -24,6 +27,9 @@ workflows:
           context: REDCap Tests
           requires:
             - run-tests
+          when:
+            condition: << pipeline.parameters.UPLOAD_RESULTS >>
+            equal: true
 
 commands:
   setup-redcap:
@@ -34,7 +40,7 @@ commands:
     steps:
       - add_ssh_keys
       - run:
-          name: Set REDCAP_VERSION
+          name: Set environment variables
           command: |
             REDCAP_VERSION=<< pipeline.parameters.REDCAP_VERSION >>
             if [ -z "$REDCAP_VERSION" ]; then
@@ -42,6 +48,9 @@ commands:
             fi
             echo Setting REDCAP_VERSION to $REDCAP_VERSION
             echo "export REDCAP_VERSION=$REDCAP_VERSION" >> $BASH_ENV
+            
+            echo Setting UPLOAD_RESULTS to $UPLOAD_RESULTS
+            echo "export UPLOAD_RESULTS=$UPLOAD_RESULTS" >> $BASH_ENV
       - run:
           name: Build the REDCap Image
           command: |
@@ -159,19 +168,6 @@ jobs:
           at: /home/circleci/project/coverage
       - setup-redcap:
           dir: "/home/circleci/project/"
-      - run:
-          name: Push PASSED Videos to VUMC REDCap project
-          command: |
-            if git log -1 --pretty=%B | grep -q '\[video-upload\]'; then
-              echo "Attempting video upload to REDCap project ..."
-              cd /home/circleci/project
-              npm install # Required to detect "Testing Platform" in import_video.sh
-              cd /home/circleci/project/coverage/redcap_rsvc
-              node upload_videos_to_redcap_project.js $REDCAP_API_TOKEN $PROJECT_ID $REDCAP_API_URL
-            else
-              echo "Skipping video and code coverage upload.  To push videos to project and update code coverage, use include '[video-upload]' in your commit message."
-              circleci-agent step halt
-            fi          
       - run:
           name: Start Docker REDCap Container
           command: |
