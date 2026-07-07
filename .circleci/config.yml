@@ -138,7 +138,10 @@ jobs:
             export NVM_DIR="/opt/circleci/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use stable
-            npm install
+            if [ ! -d node_modules ]; then
+              # Only run npm install of node_modules wasn't created via restore_cache above
+              npm install
+            fi
             npm run redcap_rsvc:install
       save_cache:
           paths:
