@@ -131,7 +131,7 @@ jobs:
             awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$REDCAP_VERSION'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
       - restore_cache:
           keys:
-            - npm-install-{{ checksum "package-lock.json" }}
+            - npm-install-v3-{{ checksum "package-lock.json" }}
       - run:
           name: Install Cypress
           command: |
@@ -147,7 +147,7 @@ jobs:
           paths:
             - ~/node_modules
             - ~/redcap_rsvc/node_modules
-          key: npm-install-{{ checksum "package-lock.json" }}
+          key: npm-install-v3-{{ checksum "package-lock.json" }}
       - run:
           name: Run Tests
           command: |
