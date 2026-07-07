@@ -142,12 +142,15 @@ jobs:
               # Only run npm install of node_modules wasn't created via restore_cache above
               npm install
             fi
-            npm run redcap_rsvc:install
       - save_cache:
           paths:
-            - ~/node_modules
-            - ~/redcap_rsvc/node_modules
+            - ~/project/node_modules
+            - ~/.cache/Cypress
           key: npm-install-v3-{{ checksum "package-lock.json" }}
+      - run:
+          name: npm run redcap_rsvc:install
+          command: |
+            npm run redcap_rsvc:install
       - run:
           name: Run Tests
           command: |
