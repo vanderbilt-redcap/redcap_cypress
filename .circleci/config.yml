@@ -129,6 +129,9 @@ jobs:
             mv cypress.env.json.example cypress.env.json
             # Favor the REDCAP_VERSION CircleCI parameter over the "redcap_version" value in cypress.env.json
             awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$REDCAP_VERSION'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
+      - restore_cache:
+          keys:
+            - npm-install-{{ checksum "package-lock.json" }}
       - run:
           name: Install Cypress
           command: |
@@ -137,6 +140,11 @@ jobs:
             nvm use stable
             npm install
             npm run redcap_rsvc:install
+      save_cache:
+          paths:
+            - ~/node_modules
+            - ~/redcap_rsvc/node_modules
+          key: npm-install-{{ checksum "package-lock.json" }}
       - run:
           name: Run Tests
           command: |
