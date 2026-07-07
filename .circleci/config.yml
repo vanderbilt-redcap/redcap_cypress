@@ -27,9 +27,7 @@ workflows:
           context: REDCap Tests
           requires:
             - run-tests
-          when:
-            condition: << pipeline.parameters.UPLOAD_RESULTS >>
-            equal: true
+          filters: pipeline.parameters.UPLOAD_RESULTS == true
 
 commands:
   setup-redcap:
