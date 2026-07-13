@@ -1,7 +1,7 @@
 const { defineConfig } = require("cypress")
 
 module.exports = defineConfig({
-    projectId: 'PID',
+    projectId: 'PID', // This is stored in CircleCI to link builds to the cloud.cypress.io project ID.
     hideXHR: false,
     e2e: {
         // We've imported your old cypress plugins here.
