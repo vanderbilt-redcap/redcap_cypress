@@ -54,12 +54,7 @@ Check the [Releases Page](https://github.com/vanderbilt-redcap/redcap_rsvc/relea
 
 **To Install Feature Tests**
 
-1. Point the **redcap_rsvc** repository in **package.json** at the appropriate tag - ensure tag release tag exists on the [Releases Page](https://github.com/vanderbilt-redcap/redcap_rsvc/releases)! 
-```
-"redcap_rsvc": "git://github.com/vanderbilt-redcap/redcap_rsvc#v13.1.37-ABC"
-```
-
-2. Run the install command:
+Run the install command:
 ```
 npm run redcap_rsvc:install
 ```
