@@ -1,9 +1,6 @@
 version: 2.1
 
 parameters:
-  REDCAP_VERSION:
-    type: string
-    default: ""
   UPLOAD_RESULTS:
     type: boolean
     default: false
@@ -41,15 +38,30 @@ commands:
       - run:
           name: Set environment variables
           command: |
-            REDCAP_VERSION=<< pipeline.parameters.REDCAP_VERSION >>
-            if [ -z "$REDCAP_VERSION" ]; then
+            REDCAP_BRANCH=$(echo '<< pipeline.trigger_parameters.webhook.body >>' | jq '.REDCAP_BRANCH')
+            REDCAP_VERSION=99.99.99
+            if [[ "$REDCAP_BRANCH" != "" ]]; then
+              : # Do nothing
+            elif [[ ${CIRCLE_BRANCH} == "dev" ]]; then
+              REDCAP_BRANCH=master
+            else # Use the tag version specified in cypress.env.json.example
               REDCAP_VERSION=`cat cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+              REDCAP_BRANCH=$REDCAP_VERSION
             fi
+
+            echo Setting REDCAP_BRANCH to $REDCAP_BRANCH
+            echo "export REDCAP_BRANCH=$REDCAP_BRANCH" >> $BASH_ENV
+
             echo Setting REDCAP_VERSION to $REDCAP_VERSION
             echo "export REDCAP_VERSION=$REDCAP_VERSION" >> $BASH_ENV
             
             echo Setting UPLOAD_RESULTS to $UPLOAD_RESULTS
             echo "export UPLOAD_RESULTS=$UPLOAD_RESULTS" >> $BASH_ENV
+
+            echo "export COMMIT_INFO_MESSAGE=\"redcap branch '$REDCAP_BRANCH', redcap_cypress branch '${CIRCLE_BRANCH}'\"" >> $BASH_ENV
+            echo "export COMMIT_INFO_BRANCH='-'" >> $BASH_ENV
+            echo "export COMMIT_INFO_EMAIL='-'" >> $BASH_ENV
+            echo "export COMMIT_INFO_AUTHOR='-'" >> $BASH_ENV
       - run:
           name: Build the REDCap Image
           command: |
@@ -75,18 +87,13 @@ commands:
             cd << parameters.dir >>/..
             mkdir redcap_source
             cd redcap_source
-            if [[ ${CIRCLE_BRANCH} == "dev" || "$REDCAP_VERSION" = "99.99.99" ]]; then
-              export BRANCH=master
-            else
-              export BRANCH=$REDCAP_VERSION
-            fi
-            git clone --depth=1 --branch=$BRANCH git@github.com:vanderbilt-redcap/REDCap.git redcap_v${REDCAP_VERSION}
+            git clone --depth=1 --branch=$REDCAP_BRANCH git@github.com:vanderbilt-redcap/REDCap.git redcap_v${REDCAP_VERSION}
             git -C redcap_v${REDCAP_VERSION} log -1 # Include current commit in build logs
             cp -a redcap_v${REDCAP_VERSION}/Resources/install_files/redcap/* .
             cp -a redcap_v${REDCAP_VERSION}/Resources/nonversioned_files/* .
             cp /home/circleci/project/.circleci/redcap_install_files/* .
 
-            if [[ ${CIRCLE_BRANCH} == "dev" || "$REDCAP_VERSION" = "99.99.99" ]]; then
+            if [[ ${CIRCLE_BRANCH} == "dev" ]]; then
               echo Checking out the "testing" branch of the EM Framework...
               export EM_FRAMEWORK_PATH=external_modules
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_50cfaf7ca7707739903a172fa25559c3" git clone --depth=1 git@github.com:vanderbilt-redcap/external-module-framework.git $EM_FRAMEWORK_PATH
