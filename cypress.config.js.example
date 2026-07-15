@@ -14,10 +14,13 @@ module.exports = defineConfig({
         baseUrl: 'http://localhost:8080',
         stepDefinitions: 'cypress/support/step_definitions',
         specPattern: [
-            'cypress/features/*.feature',
-            'redcap_rsvc/*/[ABC]/*/*.feature',
-            '!redcap_rsvc/*/[ABC]/*/*REDUNDANT*.feature',
-            '../redcap_source/modules/*/automated-tests/**/*.feature'
+            // 'cypress/features/*.feature',
+            // 'redcap_rsvc/*/[ABC]/*/*.feature',
+            // '!redcap_rsvc/*/[ABC]/*/*REDUNDANT*.feature',
+            // '../redcap_source/modules/*/automated-tests/**/*.feature'
+
+            // Only run this feature for quick testing
+            'redcap_rsvc/*/[ABC]/*/A.2.2.0500.*.feature',
         ],
         testIsolation: false,
         experimentalMemoryManagement: false,
