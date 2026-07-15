@@ -55,6 +55,7 @@ commands:
             echo Setting REDCAP_VERSION to $REDCAP_VERSION
             echo "export REDCAP_VERSION=$REDCAP_VERSION" >> $BASH_ENV
             
+            UPLOAD_RESULTS=<< pipeline.parameters.UPLOAD_RESULTS >>
             echo Setting UPLOAD_RESULTS to $UPLOAD_RESULTS
             echo "export UPLOAD_RESULTS=$UPLOAD_RESULTS" >> $BASH_ENV
 
