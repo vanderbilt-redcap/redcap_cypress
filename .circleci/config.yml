@@ -25,7 +25,7 @@ workflows:
           context: REDCap Tests
           requires:
             - run-tests
-          filters: pipeline.parameters.UPLOAD_RESULTS == true
+          filters: pipeline.parameters.UPLOAD_RESULTS == true && ${CIRCLE_BRANCH} != 'run-only-specified-features'
 
 commands:
   setup-redcap:
