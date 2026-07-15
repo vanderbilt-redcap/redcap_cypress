@@ -40,7 +40,7 @@ commands:
           command: |
             REDCAP_BRANCH=$(echo '<< pipeline.trigger_parameters.webhook.body >>' | jq '.REDCAP_BRANCH')
             REDCAP_VERSION=99.99.99
-            if [[ "$REDCAP_BRANCH" != "" ]]; then
+            if [[ "$REDCAP_BRANCH" != "null" ]]; then
               : # Do nothing
             elif [[ ${CIRCLE_BRANCH} == "dev" ]]; then
               REDCAP_BRANCH=master
