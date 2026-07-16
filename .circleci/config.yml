@@ -47,7 +47,6 @@ commands:
           name: Set environment variables
           command: |
             echo bam: $REDCAP_BRANCH
-            asdflkwfe
             REDCAP_VERSION=99.99.99
             if [[ "$REDCAP_BRANCH" != "null" ]]; then
               : # Do nothing
@@ -67,6 +66,9 @@ commands:
             UPLOAD_RESULTS=<< pipeline.parameters.UPLOAD_RESULTS >>
             echo Setting UPLOAD_RESULTS to $UPLOAD_RESULTS
             echo "export UPLOAD_RESULTS=$UPLOAD_RESULTS" >> $BASH_ENV
+
+            asdflkwfe
+
 
             echo "export COMMIT_INFO_MESSAGE=\"redcap branch '$REDCAP_BRANCH', redcap_cypress branch '${CIRCLE_BRANCH}'\"" >> $BASH_ENV
             echo "export COMMIT_INFO_BRANCH='-'" >> $BASH_ENV
