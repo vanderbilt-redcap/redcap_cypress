@@ -38,8 +38,7 @@ commands:
       - run:
           name: Set environment variables
           command: |
-            REDCAP_BRANCH=$(echo '<< pipeline.trigger_parameters.webhook.body or "null" >>' | jq '.REDCAP_BRANCH')
-            echo bam: $REDCAP_BRANCH
+            REDCAP_BRANCH=$(echo '<< pipeline.trigger_parameters.webhook.body >>' | jq '.REDCAP_BRANCH')
             REDCAP_VERSION=99.99.99
             if [[ "$REDCAP_BRANCH" != "null" ]]; then
               : # Do nothing
@@ -59,9 +58,6 @@ commands:
             UPLOAD_RESULTS=<< pipeline.parameters.UPLOAD_RESULTS >>
             echo Setting UPLOAD_RESULTS to $UPLOAD_RESULTS
             echo "export UPLOAD_RESULTS=$UPLOAD_RESULTS" >> $BASH_ENV
-
-            asdflkwfe
-
 
             echo "export COMMIT_INFO_MESSAGE=\"redcap branch '$REDCAP_BRANCH', redcap_cypress branch '${CIRCLE_BRANCH}'\"" >> $BASH_ENV
             echo "export COMMIT_INFO_BRANCH='-'" >> $BASH_ENV
