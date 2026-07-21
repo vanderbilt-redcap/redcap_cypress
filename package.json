@@ -2,8 +2,8 @@
   "name": "redcap_cypress",
   "description": "This repository is a template to assist you in writing **automated tests for REDCap**.",
   "dependencies": {
-    "rctf": "github:vanderbilt-redcap/rctf#4b82035",
-    "redcap_rsvc": "github:vanderbilt-redcap/redcap_rsvc#069202b3"
+    "rctf": "github:vanderbilt-redcap/rctf#7233629",
+    "redcap_rsvc": "github:vanderbilt-redcap/redcap_rsvc#e423f237"
   },
   "peerDependencies": {
     "cypress": "^15"
@@ -20,7 +20,7 @@
   "scripts": {
     "about-these-scripts": "These scripts are intended for a cloud environment, and do not currently make sense for local development where redcap_rsvc is a git checkout rather than a copy from node_modules.",
     "clean": "npm install && del-cli node_modules redcap_rsvc package-lock.json && npm install",
-    "redcap_rsvc:install": "npm run clean && npm run redcap_rsvc:move_files",
+    "redcap_rsvc:install": "npm run redcap_rsvc:move_files",
     "redcap_rsvc:move_files": "del-cli cypress/fixtures/cdisc_files && del-cli cypress/fixtures/dictionaries && del-cli cypress/fixtures/import_files && move-cli node_modules/redcap_rsvc redcap_rsvc && cp -a redcap_rsvc/Files/* cypress/fixtures/",
     "redcap_rsvc:validate_features": "npm install gherkin-parse glob-fs --no-save --silent --ignore-scripts && node validate_feature_files.js && sh validate_feature_files.sh",
     "redcap_rsvc:single_test": "CYPRESS_prettyEnabled=true npx cypress run --spec 'redcap_rsvc/Feature Tests/A/Configuration Check_1/A.1.1.0100. - Run Configuration Check.feature' --browser chrome",

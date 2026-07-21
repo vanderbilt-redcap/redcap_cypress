@@ -20,7 +20,6 @@ Powered by the **REDCap Cypress Test Framework ([RCTF](https://github.com/vander
 - [Defining Your Test Environment](#defining-your-test-environment)
 - [Database Strategy](#database-strategy)
 - [Running Your Tests](#running-your-tests)
-- [Writing Gherkin Feature Tests](#writing-gherkin-feature-tests)
 
 # How to Install
 
@@ -55,12 +54,7 @@ Check the [Releases Page](https://github.com/vanderbilt-redcap/redcap_rsvc/relea
 
 **To Install Feature Tests**
 
-1. Point the **redcap_rsvc** repository in **package.json** at the appropriate tag - ensure tag release tag exists on the [Releases Page](https://github.com/vanderbilt-redcap/redcap_rsvc/releases)! 
-```
-"redcap_rsvc": "git://github.com/vanderbilt-redcap/redcap_rsvc#v13.1.37-ABC"
-```
-
-2. Run the install command:
+Run the install command:
 ```
 npm run redcap_rsvc:install
 ```
@@ -219,31 +213,6 @@ A Cypress window will open and you can select which specs you'd like to run.
 After your test suite is mature, it will be faster to run your tests in headless mode.  This is how you would run your tests on a CI server.  To do so, issue the following comand:
 
 `npx cypress run`
-
----
-
-# Writing Gherkin Feature Tests
-
-We have two suggested methods to learn how to write REDCap-specific feature tests compatible with the REDCap Cypress Test Framework.
-
-1. ### Review Regulatory and Software Validation Committee (RSVC) Feature Tests
-
-[<img src="https://github.com/vanderbilt-redcap/redcap_cypress/blob/master/RSVCFeatureTestExample.png" alt="RSVC Feature Test Example">](https://github.com/vanderbilt-redcap/redcap_rsvc)
-
-RSVC has created hundreds of automated feature tests that test the functional requirements of REDCap.  
-
-Reviewing these feature tests is useful because they serve as a template for testing many aspects of REDCap.
-
-RSVC Feature Tests are availble to review here:
-https://github.com/vanderbilt-redcap/redcap_rsvc
-
-2. ### Gherkin Step Builder 
-
-<img src="https://github.com/vanderbilt-redcap/redcap_cypress/blob/master/GherkinStepBuilder.png" alt="Gherkin Step Builder">
-
-All REDCap feature tests run through this repository are powered by Step Definitions defined in the [RCTF](https://github.com/vanderbilt-redcap/rctf) node package.   
-
-Hundreds of steps are available, and we built a [Gherkin Step Builder](https://vanderbilt-redcap.github.io/rctf/) tool to help you generate your own syntactically valid Steps in your Feature Tests.
 
 # Further Reading
 [The Wiki](https://github.com/vanderbilt-redcap/redcap_cypress/wiki) contains more details on all of the above, but may be outdated.  Long term we may want to move the content of that wiki here so that find/replace will catch documentation changes as updates are made over time.
