@@ -21,7 +21,7 @@ module.exports = defineConfig({
 
             // Only run this feature for quick testing
             // We use B.3.16.2200. because it contains multiple files & users, but it still pretty short. 
-            'redcap_rsvc/*/[ABC]/*/B.3.16.2200.*.feature',
+            'redcap_rsvc/*/[ABC]/*/B.3.16.1100.*.feature',
         ],
         testIsolation: false,
         experimentalMemoryManagement: false,
