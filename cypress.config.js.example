@@ -23,7 +23,7 @@ module.exports = defineConfig({
             // We use B.3.16.2200. because it contains multiple files & users, but it still pretty short. 
             //'redcap_rsvc/*/[ABC]/*/B.3.16.1100.*.feature',
             'redcap_rsvc/*/[ABC]/*/A.4.8.0100.*.feature',
-            'redcap_rsvc/*/[ABC]/*/B.4.8.0300..*.feature',
+            'redcap_rsvc/*/[ABC]/*/B.4.8.0300.*.feature',
         ],
         testIsolation: false,
         experimentalMemoryManagement: false,
