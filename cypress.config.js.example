@@ -20,7 +20,8 @@ module.exports = defineConfig({
             // '../redcap_source/modules/*/automated-tests/**/*.feature'
 
             // Only run this feature for quick testing
-            'redcap_rsvc/*/[ABC]/*/A.2.2.0500.*.feature',
+            // We use B.3.16.2200. because it contains multiple files & users, but it still pretty short. 
+            'redcap_rsvc/*/[ABC]/*/B.3.16.2200.*.feature',
         ],
         testIsolation: false,
         experimentalMemoryManagement: false,
