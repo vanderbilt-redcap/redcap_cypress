@@ -2,7 +2,7 @@
 
 # REDCap Cypress Test Suite
 
-*Please ensure you read our [How to Install](#how-to-install) guide if you are just getting started.*
+*Please ensure you read our [Getting Started](#getting-started) section if you are just getting started.*
 
 This repository is a template to enable **REDCap Automated Testing** within the [Cypress testing tool](https://www.cypress.io/) against a **REDCap Test Environment**.
 
@@ -14,16 +14,16 @@ Powered by the **REDCap Cypress Test Framework ([RCTF](https://github.com/vander
 *[RSVC Automated Feature Tests](#rsvc-automated-feature-tests) only use built-in Gherkin Steps, but you may add your own if you [write institution-specific feature tests](#writing-gherkin-feature-tests).*
 
 # Overview
-- [How to Install](#how-to-install)
+- [Getting Started](#getting-started)
 - [!!! WARNING !!!](#-warning-)
 - [RSVC Automated Feature Tests](#rsvc-automated-feature-tests)
 - [Defining Your Test Environment](#defining-your-test-environment)
 - [Database Strategy](#database-strategy)
 - [Running Your Tests](#running-your-tests)
 
-# How to Install
+# Getting Started
 
-Please start by visiting the [REDCap Cypress Developer Toolkit](https://github.com/vanderbilt-redcap/redcap_cypress_docker).  It is the best way to get Cypress up and running on your developer machine.
+Please start by visiting the [REDCap Cypress Developer Toolkit](https://github.com/vanderbilt-redcap/redcap_cypress_docker).  It is the best way to get Cypress up and running on your developer machine, and is the best reference for the basic usage information that most users need.
 
 **Want to run the automated feature tests in CI / CD pipelines?** 
 
