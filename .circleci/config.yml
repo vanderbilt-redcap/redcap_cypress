@@ -30,11 +30,11 @@ jobs:
       - run:
           name: Build the REDCap Image
           command: |
-            git clone --branch main https://github.com/aldefouw/redcap_docker
+            git clone --branch main https://github.com/vanderbilt-redcap/redcap_docker
       - run:
           name: Get REDCap Source
           command: |
-            git clone --branch redcap-cypress https://github.com/aldefouw/redcap_source
+            git clone --branch redcap-cypress https://github.com/vanderbilt-redcap/redcap_source
       - run:
           name: Start Docker REDCap Container
           command: |
@@ -108,12 +108,12 @@ jobs:
           name: Build the REDCap Image
           command: |
             cd /home/circleci/project/
-            git clone --branch xdebug https://github.com/aldefouw/redcap_docker
+            git clone --branch xdebug https://github.com/vanderbilt-redcap/redcap_docker
       - run:
           name: Get REDCap Source
           command: |
             cd /home/circleci/project/
-            git clone --branch redcap-cypress https://github.com/aldefouw/redcap_source
+            git clone --branch redcap-cypress https://github.com/vanderbilt-redcap/redcap_source
       - run:
           name: Start Docker REDCap Container
           command: |
