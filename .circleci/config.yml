@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Build the REDCap Image
           command: |
-            git clone --branch xdebug https://github.com/aldefouw/redcap_docker
+            git clone --branch main https://github.com/aldefouw/redcap_docker
       - run:
           name: Get REDCap Source
           command: |
