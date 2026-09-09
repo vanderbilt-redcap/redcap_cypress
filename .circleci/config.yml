@@ -164,7 +164,7 @@ jobs:
           name: Run Tests
           command: |
             export UID # Referenced in docker-compose.yml by 'if running via automation' RCTF steps
-            CYPRESS_prettyEnabled=true npx cypress run --record --key $RECORD_KEY --parallel --group core-tests --browser chrome --reporter junit --reporter-options=mochaFile=coverage/test-results/[hash].xml || true
+            CYPRESS_prettyEnabled=true npx cypress run --record --key $RECORD_KEY --parallel --group core-tests --browser chrome --reporter junit --reporter-options=mochaFile=coverage/test-results/[hash].xml
       - run:
           name: Coverage Report
           command: |
