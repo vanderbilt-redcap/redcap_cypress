@@ -2,7 +2,7 @@
   "name": "redcap_cypress",
   "description": "This repository is a template to assist you in writing **automated tests for REDCap**.",
   "dependencies": {
-    "rctf": "github:vanderbilt-redcap/rctf#27501ec",
+    "rctf": "github:vanderbilt-redcap/rctf#aa22d27",
     "redcap_rsvc": "github:vanderbilt-redcap/redcap_rsvc#2c33ecf0"
   },
   "peerDependencies": {
