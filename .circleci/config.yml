@@ -68,7 +68,12 @@ commands:
           name: Build the REDCap Image
           command: |
             cd << parameters.dir >>
-            git clone --branch main https://github.com/vanderbilt-redcap/redcap_docker ../redcap_docker
+            if [[ ${CIRCLE_BRANCH} == "dev" ]]; then
+              DOCKER_BRANCH=dev
+            else
+              DOCKER_BRANCH=main
+            fi 
+            git clone --branch $DOCKER_BRANCH https://github.com/vanderbilt-redcap/redcap_docker ../redcap_docker
             cd ../redcap_docker
             git log -1 # Include current commit in build logs
             awk '
