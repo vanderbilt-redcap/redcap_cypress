@@ -38,8 +38,8 @@
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": [
-      "cypress/support/step_definitions/*",
-      "../[filepart]/step_definitions/*.js"
+      "cypress/support/step_definitions/**",
+      "../[filepart]/step_definitions/**"
     ]
   },
   "repository": {
