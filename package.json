@@ -39,7 +39,7 @@
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": [
       "cypress/support/step_definitions/*",
-      "../redcap_source/modules/**/automated-tests/step_definitions/*.js"
+      "../[filepart]/step_definitions/*.js"
     ]
   },
   "repository": {
