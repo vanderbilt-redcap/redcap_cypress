@@ -89,9 +89,10 @@ commands:
             cd << parameters.dir >>/..
             mkdir redcap_source
             cd redcap_source
+            git clone --depth=1 --branch=15.0.6 git@github.com:vanderbilt-redcap/REDCap.git first-version-with-install-files
             git clone --depth=1 --branch=$REDCAP_BRANCH git@github.com:vanderbilt-redcap/REDCap.git redcap_v${REDCAP_VERSION}
             git -C redcap_v${REDCAP_VERSION} log -1 # Include current commit in build logs
-            cp -a redcap_v${REDCAP_VERSION}/Resources/install_files/redcap/* .
+            cp -a first-version-with-install-files/Resources/install_files/redcap/* .
             cp -a redcap_v${REDCAP_VERSION}/Resources/nonversioned_files/* .
             cp /home/circleci/project/.circleci/redcap_install_files/* .
 
