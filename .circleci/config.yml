@@ -104,8 +104,9 @@ commands:
               export EM_FRAMEWORK_PATH=redcap_v${REDCAP_VERSION}/ExternalModules
             fi
 
-            echo Copy examples modules in so the Module Development Examples module tests run
-            cp -a $EM_FRAMEWORK_PATH/docs/example_modules/* modules/
+            # The following is commented because this folder didn't exist in 14.5.5
+            # echo Copy examples modules in so the Module Development Examples module tests run
+            # cp -a $EM_FRAMEWORK_PATH/docs/example_modules/* modules/
 
 jobs:
   run-tests:
