@@ -17,7 +17,7 @@ module.exports = defineConfig({
             'redcap_rsvc/*/[ABC]/*/*.feature',
             '!redcap_rsvc/*/[ABC]/*/*REDUNDANT*.feature',
             'node_modules/rctf/tests/**/*.js',
-            '../redcap_source/modules/*/automated-tests/**/*.feature'
+            '../redcap_source/modules/*/automated[-_]tests/**/*.feature'
         ],
         testIsolation: false,
         experimentalMemoryManagement: false,
