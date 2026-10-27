@@ -4,9 +4,6 @@
 
 test_db/*
 
-/www
-/redcap_docker
-
 cypress.json
 cypress.env.json
 .DS_STORE
@@ -15,7 +12,6 @@ cypress.env.json
 *.mp4
 *.png
 
-/tmp
 /redcap_rsvc
 
 cypress.config.js
