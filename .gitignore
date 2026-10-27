@@ -30,9 +30,4 @@ step-coverage/*
 
 cypress/features/Continue\ Last\ Run.feature
 
-/containers
-/docker
-/find
-/mysql
-
 mysql-cli.zip
