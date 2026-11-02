@@ -4,9 +4,6 @@
 
 test_db/*
 
-/www
-/redcap_docker
-
 cypress.json
 cypress.env.json
 .DS_STORE
@@ -15,7 +12,6 @@ cypress.env.json
 *.mp4
 *.png
 
-/tmp
 /redcap_rsvc
 
 cypress.config.js
@@ -27,15 +23,7 @@ cypress/fixtures/import_files
 
 step-coverage/*
 .nyc_output/*
-cypress/fixtures/cdisc_files
-cypress/fixtures/dictionaries
-cypress/fixtures/import_files
 
 cypress/features/Continue\ Last\ Run.feature
-
-/containers
-/docker
-/find
-/mysql
 
 mysql-cli.zip
