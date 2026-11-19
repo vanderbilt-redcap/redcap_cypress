@@ -122,11 +122,10 @@ Here is an example environment variable setup:
   },
   "timezone_override": "America/Chicago",
   "bootstrap_settings": {
-    "core": true,
-    "hooks": false,
-    "modules": false,
-    "plugins": false,
-    "projects" : false
+    "modules": {
+      "module-a_v1.2": true,
+      "module-b_v3.4": true
+    },
   }
 }
 ```
@@ -179,6 +178,12 @@ This is typically `root` on local instances of MySQL or local Docker containers.
 The password of your MySQL REDCap database user.
 
 This is typically `root` on local instances of MySQL or local Docker containers.  You'll want to check your `database.php` file on your test instance of your REDCap installation to determine this value.
+
+---
+### bootstrap_settings['modules'] ### 
+A javascript object specifying the External Modules that should be enabled on all feature tests.
+
+The object keys should be module directory names (including version numbers), and the value of each should be `true` to enable that module. Setting a value of `false` is the same as omitting that line from the object entirely, but can be useful for managing the enabling of different modules at different times.
 
 ---
 
